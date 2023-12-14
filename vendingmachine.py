@@ -1,47 +1,52 @@
-#write a program where you can take 5 numbers as an input from user and print their #sum , average
-v=int(input("Enter Number : "))
-w=int(input("Enter Number : "))
-x=int(input("Enter Number : "))
-y=int(input("Enter Number : "))
-z=int(input("Enter Number : "))
-print(v+w+x+y+z)
-#write a programin which you can display list of your 5 favourite things and print the list
-A=input("Enter fav things : ")
-B=input("Enter fav things : ")
-C=input("Enter fav things : ")
-D=input("Enter fav things : ")
-E=input("Enter fav things : ")
-things=[A,B,C,D,E]
-print(things)
-#create a nested dictionary to store the iteam category , iteam name , iteam code, price, and stock and display the list of iteams using function 
-items = {
-    'item1': {
-        'category': 'CHIPS',
-        'name': 'Lays',
-        'code': 'L123',
-        'price': 3.00,
-        'stock': 50
-    },
-    'item2': {
-        'category': 'CHOCOLATE',
-        'name': 'Kitkat',
-        'code': 'K123',
-        'price': 2.50,
-        'stock': 70
-    },
-    
-    # Add more items as needed
-}
+print(""" 
+░██████╗░█████╗░██████╗░░█████╗░██╗░░██╗██╗░██████╗  ██╗░░░██╗███████╗███╗░░██╗██████╗░██╗███╗░░██╗░██████╗░
+██╔════╝██╔══██╗██╔══██╗██╔══██╗██║░░██║╚█║██╔════╝  ██║░░░██║██╔════╝████╗░██║██╔══██╗██║████╗░██║██╔════╝░
+╚█████╗░███████║██████╦╝███████║███████║░╚╝╚█████╗░  ╚██╗░██╔╝█████╗░░██╔██╗██║██║░░██║██║██╔██╗██║██║░░██╗░
+░╚═══██╗██╔══██║██╔══██╗██╔══██║██╔══██║░░░░╚═══██╗  ░╚████╔╝░██╔══╝░░██║╚████║██║░░██║██║██║╚████║██║░░╚██╗
+██████╔╝██║░░██║██████╦╝██║░░██║██║░░██║░░░██████╔╝  ░░╚██╔╝░░███████╗██║░╚███║██████╔╝██║██║░╚███║╚██████╔╝
+╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═════╝░  ░░░╚═╝░░░╚══════╝╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚══╝░╚═════╝░
 
-# Accessing information for 'item1'
-print("Category:", items['item1']['category'])
-print("Name:", items['item1']['name'])
-print("Code:", items['item1']['code'])
-print("Price:", items['item1']['price'])
-print("Stock:", items['item1']['stock'])
-# Accessing information for 'item2'
-print("Category:", items['item2']['category'])
-print("Name:", items['item2']['name'])
-print("Code:", items['item2']['code'])
-print("Price:", items['item2']['price'])
-print("Stock:", items['item2']['stock'])
+███╗░░░███╗░█████╗░░█████╗░██╗░░██╗██╗███╗░░██╗███████╗
+████╗░████║██╔══██╗██╔══██╗██║░░██║██║████╗░██║██╔════╝
+██╔████╔██║███████║██║░░╚═╝███████║██║██╔██╗██║█████╗░░
+██║╚██╔╝██║██╔══██║██║░░██╗██╔══██║██║██║╚████║██╔══╝░░
+██║░╚═╝░██║██║░░██║╚█████╔╝██║░░██║██║██║░╚███║███████╗
+╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝╚══════╝""")
+    
+# available items and prices
+items = {
+    '1': {'name': 'KitKat', 'price': 2.50},
+    '2': {'name': 'Oman Chips', 'price': 1.50},
+    '3': {'name': '7 up ', 'price': 3.00},
+    '4': {'name': 'Water', 'price': 1.00},
+    '5': {'name': 'Cup Cake', 'price': 2.00},
+    '6': {'name': 'sandwich', 'price': 5.00}
+}
+print("WELCOME TO VENDING MACHINE")
+print("Please select an item:")
+
+for key, item in items.items():
+    print(f"{key}. {item['name']} - ${item['price']}")
+
+# Prompt user for input
+selection = input("Enter the item number you wish to purchase: ")
+
+# Check if the selected item is valid
+if selection in items:
+    selected_item = items[selection]
+    print(f"You have selected {selected_item['name']}.")
+    amount_due = selected_item['price']
+
+    # Prompt user to insert money
+    while amount_due > 0:
+        try:
+            payment = float(input(f"Please insert ${amount_due:.2f}: "))
+            if payment >= amount_due:
+                change = payment - amount_due
+                print(f"Thank you for your purchase! Your change is ${change:.2f}.")
+                break
+            else:
+                print("Insufficient payment. Please insert more money.")
+                amount_due -= payment
+        except ValueError:
+            print("Invalid payment amount. Please enter a valid number.")
